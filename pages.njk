@@ -1,0 +1,19 @@
+---
+layout: layouts/main.njk
+pagination:
+    data: data.pages
+    size: 1
+    alias: pagedata
+permalink: "pages/{{ pagedata.name | slug }}/"
+eleventyNavigation:
+  key: Dynamic Subpages
+---
+
+<h2>{{ pagedata.name }}</h2>
+<p>{{ pagedata.content | safe }}</p>
+
+<ul>
+  {%- for pageEntry in pagination.pages %}
+    <li><a href="{{ pagination.hrefs[ loop.index0 ] }}">{{pageEntry.name}}</a></li>
+  {%- endfor %}
+</ul>

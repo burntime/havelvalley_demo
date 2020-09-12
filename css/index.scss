@@ -1,0 +1,61 @@
+:root {
+  --red: #C5004A;
+  --darkred: #7F0036;
+  --lightgray: #e0e0e0;
+  --gray: #C0C0C0;
+  --darkgray: #333;
+  --navy: #17050F;
+  --blue: #082840;
+  --white: #fff;
+  --black: #070707;
+  --primary: #010eff;
+  --primary-dark: #000569;
+  --primary-light: #17ccbe;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 20px;
+  font-family: system-ui, sans-serif;
+  color: var(--primary-dark);
+
+  header {
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    color: var(--primary);
+  }
+
+  &.home {
+    .hero {
+      width: 100%;
+      text-align: center;
+    }
+
+    .values {
+      dt {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      dd {
+        margin: 0;
+        padding: 0 0 0.5em 0;
+      }
+    }
+  }
+
+  #valeyMap {
+    width: 100%;
+    height: 600px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+
+}
+
+@media only screen and (min-width: 992px) {
+
+}

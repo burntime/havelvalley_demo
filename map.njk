@@ -1,0 +1,38 @@
+---
+layout: layouts/main.njk
+eleventyNavigation:
+  key: Map
+---
+<div id="valeyMap"></div>
+<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+<script>
+  (() => {
+    const map = new OpenLayers.Map("valeyMap");
+    map.addLayer(new OpenLayers.Layer.OSM());
+    const fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+    const toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+    const center = new OpenLayers.LonLat( 12.5530253, 52.411105 ).transform(fromProjection, toProjection);
+    const zoom = 14;
+
+    const mapEntrysArray = []
+    {%- for entry in data.mapEntrys %}
+      let item{{loop.index}} = {
+        lon: {{ entry.lon }},
+        lat: {{ entry.lat }}
+      };
+      mapEntrysArray.push(item{{loop.index}});
+    {%- endfor %}
+
+    console.log(mapEntrysArray);
+
+    const markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+
+    mapEntrysArray.forEach((entry) => {
+      let lonLat = new OpenLayers.LonLat( entry.lon, entry.lat ).transform(fromProjection, toProjection);
+      markers.addMarker(new OpenLayers.Marker(lonLat));
+    });
+
+    map.setCenter(center, zoom);
+  })();
+</script>

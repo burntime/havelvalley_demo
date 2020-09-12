@@ -1,0 +1,20 @@
+---
+layout: layouts/home.njk
+---
+<div class="hero">
+  <img class="logo" src="/img/logo.svg" width="400" alt="{{ data.title }}">
+</div>
+
+<h2>Vison</h2>
+<p>{{ data.description}}</p>
+
+<h2>Mission</h2>
+<p>{{ data.mission | safe}}</p>
+
+<h2>Values</h2>
+<dl class="values">
+  {%- for key, value in data.values %}
+    <dt>{{ key }}</dt>
+    <dl>{{ value }}</dl>
+  {%- endfor %}
+</ul>
