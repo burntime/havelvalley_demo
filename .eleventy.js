@@ -1,5 +1,6 @@
 const fs = require('fs');
 const sass = require('node-sass');
+const htmlmin = require('html-minifier');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginEmbedYouTube = require("eleventy-plugin-youtube-embed");
@@ -21,6 +22,23 @@ module.exports = function(eleventyConfig) {
     fs.writeFileSync(`_site/${path}.css`, result);
 
     return `/${path}.css`;
+  });
+
+  eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
+      if (!outputPath.endsWith(".html")) {
+          return content;
+      }
+
+      return htmlmin.minify(content, {
+          useShortDoctype: true,
+          removeComments: true,
+          collapseWhitespace: true,
+          minifyCSS: true,
+          minifyJS: true,
+          removeRedundantAttributes: true,
+          sortAttributes: true,
+          sortClassName: true,
+      });
   });
 
   return {

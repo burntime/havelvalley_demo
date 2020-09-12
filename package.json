@@ -25,6 +25,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
     "dotenv": "^8.2.0",
     "eleventy-plugin-youtube-embed": "^1.4.5",
+    "html-minifier": "^4.0.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1"
   }
