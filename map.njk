@@ -3,11 +3,11 @@ layout: layouts/main.njk
 eleventyNavigation:
   key: Map
 ---
-<div id="valeyMap"></div>
+<div id="valleyMap"></div>
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script>
   (() => {
-    const map = new OpenLayers.Map("valeyMap");
+    const map = new OpenLayers.Map("valleyMap");
     map.addLayer(new OpenLayers.Layer.OSM());
     const fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
     const toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
