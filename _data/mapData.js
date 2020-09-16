@@ -2,7 +2,7 @@ const fetch = require('node-fetch')
 const apiUrl = process.env.STRAPI_API_URL;
 
 module.exports = async () => {
-  const response = await fetch(`http://dev.kulikov.berlin/mock_api/havel.json`);
+  const response = await fetch(`${apiUrl}/locations`);
   const data = await response.json();
 
   console.log(data);

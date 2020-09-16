@@ -5,6 +5,5 @@ module.exports = async () => {
   const response = await fetch(`${apiUrl}/homepage`);
   const data = await response.json();
 
-  console.log(data);
   return data;
 }

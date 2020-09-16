@@ -14,18 +14,18 @@ eleventyNavigation:
 
 <script src="/js/map.js"></script>
 <script>
-(()=> {
-  const mapEntrysArray = [];
-  {%- for entry in mapData.mapEntrys %}
-    mapEntrysArray.push({
-      lon: {{ entry.lon }},
-      lat: {{ entry.lat }},
-      name: 'Fanzy Startup'
-    });
-  {%- endfor %}
+  (()=> {
+    const mapEntrysArray = [];
+    {%- for entry in mapData %}
+      mapEntrysArray.push({
+        lon: {{ entry.lon }},
+        lat: {{ entry.lat }},
+        name: '{{ entry.name }}',
+      });
+    {%- endfor %}
 
-  document.addEventListener("DOMContentLoaded", function(event) {
-    window.valley.initMap(mapEntrysArray);
-  });
+    document.addEventListener("DOMContentLoaded", function(event) {
+      window.valley.initMap(mapEntrysArray);
+    });
 })();
 </script>
