@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "eleventy",
+    "build:js": "parcel build ./js/map.js --out-dir _site/js/ --no-source-maps",
     "watch": "eleventy --watch",
+    "watch:js": "parcel watch ./js/map.js --out-dir _site/js/ --no-source-maps",
     "start": "eleventy --serve",
     "start:server": "node server.js",
     "debug": "DEBUG=* eleventy"
@@ -31,6 +33,8 @@
     "markdown-it": "^11.0.1",
     "ncp": "^2.0.0",
     "node-fetch": "^2.6.1",
-    "node-sass": "^4.14.1"
+    "node-sass": "^4.14.1",
+    "ol": "^6.4.3",
+    "parcel": "^1.12.4"
   }
 }
