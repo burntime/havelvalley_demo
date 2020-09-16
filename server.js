@@ -7,7 +7,6 @@ const { ncp } = require('ncp');
 const elev = new Eleventy();
 const app = express();
 
-
 const PORT = process.env.PORT;
 const API_KEY = process.env.API_KEY;
 const SOURCE = process.env.COPY_SOURCE;
