@@ -15,8 +15,6 @@ const initMap = (mapEntrysArray) => {
 
   const mapFeatureArray = [];
   mapEntrysArray.forEach((entry, key)=> {
-    console.log(entry.lon, entry.lat);
-
     mapFeatureArray.push(new Feature({
       geometry: new Point(fromLonLat([entry.lon, entry.lat])),
       name: entry.name
@@ -44,8 +42,6 @@ const initMap = (mapEntrysArray) => {
     source: vectorSource,
   });
 
-  console.log(vectorLayer);
-
   const map = new Map({
     target: 'valleyMap',
     layers: [
@@ -56,6 +52,38 @@ const initMap = (mapEntrysArray) => {
       center: fromLonLat([12.5530253, 52.411105]),
       zoom: 14
     })
+  });
+
+  const popupElement = document.getElementById('valleyMapPopup');
+  const $popupElement = $('#valleyMapPopup');
+
+  const popup = new Overlay({
+    element: popupElement,
+    positioning: 'bottom-center',
+    stopEvent: false,
+    offset: [0, -50],
+  });
+
+  map.addOverlay(popup);
+
+  map.on('click', (event) => {
+    const feature = map.forEachFeatureAtPixel(event.pixel, (feature) => {
+      return feature;
+    });
+
+    if (feature) {
+      const coordinates = feature.getGeometry().getCoordinates();
+      popup.setPosition(coordinates);
+
+      $popupElement.popover({
+        placement: 'top',
+        html: true,
+        content: feature.get('name'),
+      });
+      $popupElement.popover('show');
+    } else {
+      $popupElement.popover('dispose');
+    }
   });
 }
 
