@@ -28,8 +28,9 @@
     "eleventy-plugin-youtube-embed": "^1.4.5",
     "express": "^4.17.1",
     "html-minifier": "^4.0.0",
+    "markdown-it": "^11.0.1",
     "ncp": "^2.0.0",
     "node-fetch": "^2.6.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^4.14.1"
   }
 }

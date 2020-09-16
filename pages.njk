@@ -1,7 +1,7 @@
 ---
 layout: layouts/main.njk
 pagination:
-    data: data.pages
+    data: pages
     size: 1
     alias: pagedata
 permalink: "pages/{{ pagedata.name | slug }}/"
@@ -10,7 +10,7 @@ eleventyNavigation:
 ---
 
 <h2>{{ pagedata.name }}</h2>
-<p>{{ pagedata.content | safe }}</p>
+<p>{{ pagedata.content | renderUsingMarkdown | safe }}</p>
 
 <ul>
   {%- for pageEntry in pagination.pages %}

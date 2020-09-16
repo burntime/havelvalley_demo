@@ -1,9 +1,14 @@
+require('dotenv').config();
+
 const fs = require('fs');
 const sass = require('node-sass');
 const htmlmin = require('html-minifier');
+const MarkdownIt = require("markdown-it");
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginEmbedYouTube = require("eleventy-plugin-youtube-embed");
+
+const mdRender = new MarkdownIt();
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
@@ -22,6 +27,10 @@ module.exports = function(eleventyConfig) {
     fs.writeFileSync(`_site/${path}.css`, result);
 
     return `/${path}.css`;
+  });
+
+  eleventyConfig.addFilter("renderUsingMarkdown", function(rawString) {
+    return mdRender.render(rawString);
   });
 
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
